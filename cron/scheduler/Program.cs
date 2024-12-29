@@ -18,9 +18,12 @@ class Program
         ITrigger trigger = TriggerBuilder.Create()
             .WithIdentity("exampleTrigger", "group1")
             .StartNow()
-            .WithSimpleSchedule(x => x
-                .WithIntervalInSeconds(5)
-                .RepeatForever())
+            //.WithSimpleSchedule(x => x
+            //    .WithIntervalInSeconds(5)
+            //    .RepeatForever())
+
+            // Cron Expression: "0/5 * * * * ?" 0:start, 5: repeat every n second
+            .WithCronSchedule("0/5 * * * * ?")
             .Build();
 
         // 4. Schedule the job using the trigger
